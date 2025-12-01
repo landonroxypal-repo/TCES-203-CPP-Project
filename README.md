@@ -8,6 +8,8 @@ to where the main.cpp file is located.
 g++ -std=c++11 main.cpp Car.cpp motor.cpp -o TCES203Proj2
 ./TCES203Proj2
 
+(Note that the compilation command is TWO lines, if it is pasted in as one line the compiler will return 1 and fail to run the code.)
+
 # Classes and Files
 
 Files:
