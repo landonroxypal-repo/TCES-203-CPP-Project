@@ -20,6 +20,7 @@ public:
 
     void startStream();
     void stopStream();
+    void captureFrame(double x, double y);
     bool isStreaming() const;
 };
 
@@ -35,27 +36,6 @@ enum class MovementCommand {
     RotateRight,
     Stop
 };
-
-// Structure to capture the state of a single motor at one instant.
-struct MotorSnapshot {
-    std::string name;
-    int speedPercent;
-    bool enabled;
-};
-
-// Structure to capture the full state of the car at one instant.
-struct CarSnapshot {
-    double x;
-    double y;
-    double headingDeg;
-    bool cameraStreaming;
-
-    MotorSnapshot frontLeft;
-    MotorSnapshot frontRight;
-    MotorSnapshot rearLeft;
-    MotorSnapshot rearRight;
-};
-
 
 /*
  * MecanumCar
