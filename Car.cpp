@@ -3,6 +3,8 @@
 #include <math.h>
 #include <sstream>
 
+#include <iostream> // only for the camera
+
 // -----------------------
 // PiCamera implementation
 // -----------------------
@@ -25,6 +27,13 @@ void PiCamera::stopStream()
 bool PiCamera::isStreaming() const
 {
     return streaming;
+}
+
+void PiCamera::captureFrame(double x, double y) 
+{
+    // BAD OOP PRACTICE WOOOO!!!!!
+
+    std::cout << "Camera capturing frame at (" << x << "," << y << ")";
 }
 
 
