@@ -8,7 +8,10 @@
 #define MOTOR
 
 #include <string>
-#include "wiringPi.h"
+//#include "wiringPi.h"
+
+
+const int DEFAULT_SPEED = 100;
 
 /*
  * Motor

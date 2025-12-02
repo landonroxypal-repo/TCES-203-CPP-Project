@@ -10,6 +10,9 @@
 #include <string>
 #include "wiringPi.h"
 
+
+const int DEFAULT_SPEED = 100;
+
 /*
  * Motor
  * -----
@@ -27,6 +30,7 @@ private:
     std::string name;
     int speedPercent;   // from -100 to +100
     bool enabled;
+    int positivePin, negativePin;
 
 public:
     Motor();

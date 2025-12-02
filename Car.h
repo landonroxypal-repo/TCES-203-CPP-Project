@@ -78,6 +78,7 @@ public:
 
     void cameraOn();
     void cameraOff();
+    bool cameraEnabled();
 
     double getX() const;
     double getY() const;
@@ -88,7 +89,7 @@ public:
     Motor getRearLeftMotor() const;
     Motor getRearRightMotor() const;
 
-    void applyCommand(MovementCommand cmd, double value);
+    void applyCommand(MovementCommand cmd, double value = 0);
 
     std::string toString() const;
 

@@ -119,10 +119,10 @@ void MecanumCar::rotateRight(double angleDeg)
 {
     updatePose(0, 0, -angleDeg);
 
-    frontLeft.setSpeed(50);
-    frontRight.setSpeed(-50);
-    rearLeft.setSpeed(50);
-    rearRight.setSpeed(-50);
+    frontLeft.setSpeed(DEFAULT_SPEED);
+    frontRight.setSpeed(-DEFAULT_SPEED);
+    rearLeft.setSpeed(DEFAULT_SPEED);
+    rearRight.setSpeed(-DEFAULT_SPEED);
 }
 
 void MecanumCar::stopAllMotors()
@@ -178,7 +178,7 @@ Motor MecanumCar::getRearRightMotor() const
     return rearRight;
 }
 
-void MecanumCar::applyCommand(MovementCommand cmd, double value = 0) //Added a default value so stop can be called w/o needing to pass in a double
+void MecanumCar::applyCommand(MovementCommand cmd, double value) //Added a default value so stop can be called w/o needing to pass in a double
 {
     // Note: no curly braces requried because no new variables are defined in any of the switch cases!
 
@@ -240,4 +240,8 @@ std::string MecanumCar::toString() const
     }
 
     return ss.str();
+}
+
+bool MecanumCar::cameraEnabled(){
+    return camera.isStreaming();
 }

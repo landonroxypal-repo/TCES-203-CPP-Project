@@ -7,6 +7,7 @@
 #include "Motor.h"
 #include <string>
 #include <sstream>
+//#include <pigpio.h>
 
 // --------------------
 // Motor implementation
