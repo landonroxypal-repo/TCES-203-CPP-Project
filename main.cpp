@@ -69,7 +69,7 @@ void printMenu(){
 }
 
 
-// TODO: fix input verification
+// TODO: fix input verification  
 double getChangeValue(){
     double value;
     std::cout << "Enter option: ";

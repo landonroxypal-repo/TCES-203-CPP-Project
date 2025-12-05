@@ -8,8 +8,6 @@
 #define MOTOR
 
 #include <string>
-//#include "wiringPi.h"
-
 
 const int DEFAULT_SPEED = 100;
 
@@ -30,20 +28,24 @@ private:
     std::string name;
     int speedPercent;   // from -100 to +100
     bool enabled;
-
+    int forwardPin;
+    int backwardPin;
 public:
     Motor();
     Motor(const std::string& motorName);
+    Motor(const std::string& motorName, int backPin, int forPin);
 
     void setSpeed(int newSpeedPercent);
     int getSpeed() const;
 
-    void enable();
     void disable();
     bool isEnabled() const;
 
     std::string getName() const;
     std::string toString() const;
+
+    void setForwardPin(int fowardPin);
+    void setBackwardPin(int backwardPin);
 };
 
 #endif

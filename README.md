@@ -5,6 +5,18 @@ The code in this folder operates a car in c++ for a raspberry pi.
 To compile and run our project, please run this command in the terminal with the current directory set 
 to where the main.cpp file is located.
 
+
+If on a Raspberry Pi B:
+g++ -DUSING_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp -lwiringpi -o TCES203Proj2
+./TCES203Proj2
+
+Note: The above compilation command WILL fail if you do not have a Raspberry Pi B with the wiringPi.h header file installed!
+
+If simulating a mock Raspberry Pi B in an IDE:
+g++ -DMOCK_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp wiringPi.cpp -o TCES203Proj2
+./TCES203Proj2
+
+Otherwise (simulation mode):
 g++ -std=c++11 main.cpp Car.cpp motor.cpp -o TCES203Proj2
 ./TCES203Proj2
 

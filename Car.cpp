@@ -41,14 +41,12 @@ void PiCamera::captureFrame(double x, double y)
 // MecanumCar implementation
 // ------------------------
 
-//TODO: The code below may have to be changed on how it constructs the motors because we need pin information!
-
 MecanumCar::MecanumCar() 
 {
-   frontLeft = Motor("front-left");
-   frontRight = Motor("front-right");
-   rearLeft = Motor("rear-left");
-   rearRight = Motor("rear-right");
+   frontLeft = Motor("front-left", 26, 19);
+   frontRight = Motor("front-right", 27, 17);
+   rearLeft = Motor("rear-left", 24, 23);
+   rearRight = Motor("rear-right", 21, 20);
    x = 0.0;
    y = 0.0;
    headingDeg = 0.0;
@@ -69,50 +67,50 @@ void MecanumCar::moveForward(double distance)
 {
     updatePose(0, distance, 0);
 
-    frontLeft.setSpeed(50);
-    frontRight.setSpeed(50);
-    rearLeft.setSpeed(50);
-    rearRight.setSpeed(50);
+    frontLeft.setSpeed(DEFAULT_SPEED);
+    frontRight.setSpeed(DEFAULT_SPEED);
+    rearLeft.setSpeed(DEFAULT_SPEED);
+    rearRight.setSpeed(DEFAULT_SPEED);
 }
 
 void MecanumCar::moveBackward(double distance)
 {
     updatePose(0, -distance, 0);
 
-    frontLeft.setSpeed(-50);
-    frontRight.setSpeed(-50);
-    rearLeft.setSpeed(-50);
-    rearRight.setSpeed(-50);
+    frontLeft.setSpeed(-DEFAULT_SPEED);
+    frontRight.setSpeed(-DEFAULT_SPEED);
+    rearLeft.setSpeed(-DEFAULT_SPEED);
+    rearRight.setSpeed(-DEFAULT_SPEED);
 }
 
 void MecanumCar::strafeLeft(double distance)
 {
     updatePose(-distance, 0, 0);
 
-    frontLeft.setSpeed(-50);
-    frontRight.setSpeed(50);
-    rearLeft.setSpeed(50);
-    rearRight.setSpeed(-50);
+    frontLeft.setSpeed(-DEFAULT_SPEED);
+    frontRight.setSpeed(DEFAULT_SPEED);
+    rearLeft.setSpeed(DEFAULT_SPEED);
+    rearRight.setSpeed(-DEFAULT_SPEED);
 }
 
 void MecanumCar::strafeRight(double distance)
 {
     updatePose(distance, 0, 0);
 
-    frontLeft.setSpeed(50);
-    frontRight.setSpeed(-50);
-    rearLeft.setSpeed(-50);
-    rearRight.setSpeed(50);
+    frontLeft.setSpeed(DEFAULT_SPEED);
+    frontRight.setSpeed(-DEFAULT_SPEED);
+    rearLeft.setSpeed(-DEFAULT_SPEED);
+    rearRight.setSpeed(DEFAULT_SPEED);
 }
 
 void MecanumCar::rotateLeft(double angleDeg)
 {
     updatePose(0, 0, angleDeg);
 
-    frontLeft.setSpeed(-50);
-    frontRight.setSpeed(50);
-    rearLeft.setSpeed(-50);
-    rearRight.setSpeed(50);
+    frontLeft.setSpeed(-DEFAULT_SPEED);
+    frontRight.setSpeed(DEFAULT_SPEED);
+    rearLeft.setSpeed(-DEFAULT_SPEED);
+    rearRight.setSpeed(DEFAULT_SPEED);
 }
 
 void MecanumCar::rotateRight(double angleDeg)
