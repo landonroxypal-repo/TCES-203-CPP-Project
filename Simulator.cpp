@@ -63,7 +63,7 @@ void Simulator::drawMap()
 
         // Clear screen (simple portable trick).
         std::cout << "\x1B[2J\x1B[H";
-        std::cout << currentCar.getBasicInfo();
+        std::cout << currentCar.toString();
 
         std::cout << "\nMap Legend: C = car, . = empty\n\n";
 

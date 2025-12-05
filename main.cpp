@@ -6,9 +6,13 @@
 
 const int EXIT_CHOICE = 0;
 
+//TODO: NEED LOTS OF INPUT VERIFICATION!!
+
 void printMenu();
 double getChangeValue();
 int getChoice();
+void selectionSort(int array[], int size);
+void swap(int array[], int a, int b);
 
 void printDivider() { // not public! Temporary function for formatting purposes
     std::cout << "-----------------------------------------\n";
@@ -59,9 +63,27 @@ int main() {
                     car.cameraOff();
                 } else car.cameraOn();
                 break;
-            case 9:
-                std::cout << car.toString();
+            case 9: {
+                int cmdnum = 0;
+                std::cout << "Enter the number of commands to sort: ";
+                std::cin >> cmdnum;
+
+                int cmds[cmdnum];
+
+                for (int index = 0; index < cmdnum; index++) {
+                    cmds[index] = getChoice();
+                }
+
+                selectionSort(cmds, cmdnum);
+
+                std::cout << "Your commands in sorted order are: ";
+                for (int &val : cmds) {
+                    std::cout << val << ' ';
+                }
+                std::cout << std::endl;
+
                 break;
+            }
             default:
                 std::cout << "Invalid command\n";
                 break;
@@ -82,11 +104,37 @@ int main() {
     return 0;
 }
 
-void printMenu(){
-    std::cout << "==Control Menu:==\n\t1 - Move foward\n\t2 - Move backward\n\t3 - Strafe left\n\t4 - Strafe right"
-              << "\n\t5 - Rotate left\n\t6 - Rotate right\n\t7 - stop\n\t8 - Toggle camera\n\t9 - Display car\n\t0 - exit\n";
+void swap(int array[], int a, int b) {
+    int temp = array[a];
+
+    array[a] = array[b];
+    array[b] = temp;
 }
 
+void selectionSort(int array[], int size) {
+    int left = 0;
+    int right = 0;
+    // using two pointer approach for sorting
+
+    for (left = 0; left < size - 1; left++) {
+        int smallestCmd = array[left];
+        int smallestIndex = left;
+
+        for (right = left + 1; right < size; right++) {
+            if (array[right] < smallestCmd) {
+                smallestCmd = array[right];
+                smallestIndex = right;
+            }
+        }
+
+        swap(array, left, smallestIndex);
+    }
+}
+
+void printMenu(){
+    std::cout << "==Control Menu:==\n\t1 - Move foward\n\t2 - Move backward\n\t3 - Strafe left\n\t4 - Strafe right"
+              << "\n\t5 - Rotate left\n\t6 - Rotate right\n\t7 - Stop\n\t8 - Toggle camera\n\t9 - Sort Commands\n\t0 - Exit\n";
+}
 
 // TODO: fix input verification  
 double getChangeValue() {
@@ -106,10 +154,18 @@ double getChangeValue() {
 }
 
 int getChoice() {
-    char value;
+    int value;
     std::cout << "Enter option: ";
     std::cin >> value;
+
+    while (std::cin.fail() || !(value >= 0 && value <= 9)){
+        std::cout << "Invalid value. Enter a int from 0 to 9: ";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
+
+        std::cin >> value;
+    }
     
-    return value - '0';
+    return value;
 }
 
