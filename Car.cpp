@@ -2,6 +2,7 @@
 #include <string>
 #include <math.h>
 #include <sstream>
+#include <iomanip>
 
 #include <iostream> // only for the camera
 
@@ -56,11 +57,20 @@ MecanumCar::MecanumCar()
 
 void MecanumCar::updatePose(double dx, double dy, double dThetaDeg)
 {
-    x += dx;
-    y += dy;
     headingDeg += dThetaDeg;
 
     headingDeg = std::fmod(headingDeg, 360.0f);
+
+    double headingRad = std::atan(1.0) * 4 / 180.0f * headingDeg;
+
+    double magnitude = std::sqrt(dx * dx + dy * dy);
+    double ang = std::atan2(dy, dx);
+
+    double trigdx = std::cos(ang + headingRad) * magnitude;
+    double trigdy = std::sin(ang + headingRad) * magnitude;
+
+    x += trigdx;
+    y += trigdy;
 }
 
 void MecanumCar::moveForward(double distance)
@@ -103,7 +113,7 @@ void MecanumCar::strafeRight(double distance)
     rearRight.setSpeed(DEFAULT_SPEED);
 }
 
-void MecanumCar::rotateLeft(double angleDeg)
+void MecanumCar::rotateRight(double angleDeg)
 {
     updatePose(0, 0, angleDeg);
 
@@ -113,7 +123,7 @@ void MecanumCar::rotateLeft(double angleDeg)
     rearRight.setSpeed(DEFAULT_SPEED);
 }
 
-void MecanumCar::rotateRight(double angleDeg)
+void MecanumCar::rotateLeft(double angleDeg)
 {
     updatePose(0, 0, -angleDeg);
 
@@ -208,7 +218,7 @@ void MecanumCar::applyCommand(MovementCommand cmd, double value) //Added a defau
 std::vector<Motor> MecanumCar::getMotors() const
 {
     std::vector<Motor> motors = {
-        getFrontLeftMotor(),
+         getFrontLeftMotor(),
          getFrontRightMotor(), 
          getRearLeftMotor(), 
          getRearRightMotor()
@@ -222,14 +232,23 @@ std::string getDivider()
     return "-----------------------------------------\n";
 }
 
-std::string MecanumCar::toString() const
+std::string MecanumCar::getBasicInfo() const 
 {
     std::stringstream ss;
     ss << "Car:\n" << getDivider();
-    ss << "Position = (" << x << "," <<y << ")\n";
-    ss << "Heading = " << headingDeg << static_cast<char>(248) << "\n";
+    ss << "Position = (" << std::setprecision(2) << x << "," << y << ")\n";
+    ss << "Heading = " << std::setprecision(5) << headingDeg << static_cast<char>(248) << "\n";
     ss << "Camera State = " << (camera.isStreaming() ? "On" : "Off") << "\n";
 
+    return ss.str();
+}
+
+std::string MecanumCar::toString() const
+{
+    
+    std::stringstream ss;
+
+    ss << getBasicInfo();
     ss << "Motors:\n" << getDivider();
 
     for (Motor motor : getMotors()) {

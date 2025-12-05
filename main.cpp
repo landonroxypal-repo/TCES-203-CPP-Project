@@ -2,22 +2,29 @@
 #include <limits>
 
 #include "Car.h"
+#include "Simulator.h"
+
+const int EXIT_CHOICE = 0;
 
 void printMenu();
 double getChangeValue();
 int getChoice();
 
-void printDivider() // not public! Temporary function for formatting purposes
-{
+void printDivider() { // not public! Temporary function for formatting purposes
     std::cout << "-----------------------------------------\n";
 }
 
 int main() {
+    Simulator* sim = nullptr;
+
     MecanumCar car;
 
+    #if !defined(USING_PI) && !defined(MOCK)
+        sim = new Simulator(car, 31, 31);
+    #endif
 
-    int choice = 30, value;
-    do{
+    int choice = -1, value;
+    do {
         printMenu();
         choice = getChoice();
         
@@ -48,31 +55,44 @@ int main() {
                 car.applyCommand(MovementCommand::Stop);
                 break;
             case 8:
-                if(car.cameraEnabled()){
+                if (car.cameraEnabled()) {
                     car.cameraOff();
-                }else car.cameraOn();
+                } else car.cameraOn();
+                break;
+            case 9:
+                std::cout << car.toString();
                 break;
             default:
                 std::cout << "Invalid command\n";
                 break;
-            case 9: 
+            case EXIT_CHOICE: 
                 std::cout << "Goodbye!\n";
         }
-    }while (choice != 9);
+        
+        if (sim != nullptr && choice != EXIT_CHOICE && choice != 9) {
+            sim->drawMap();
+        }
+    } while (choice != EXIT_CHOICE);
+
+    if (sim != nullptr) {
+        delete sim;
+        sim = nullptr;
+    }
 
     return 0;
 }
 
 void printMenu(){
-    std::cout << "Control Menu:\n\t1 - Move foward\n\t2 - Move backward\n\t3 - Strafe left\n\t4 - Strafe right"
-              << "\n\t5 - Rotate left\n\t6 - Rotate right\n\t7 - stop\n\t8 - Toggle camera\n\t9 - exit\n";
+    std::cout << "==Control Menu:==\n\t1 - Move foward\n\t2 - Move backward\n\t3 - Strafe left\n\t4 - Strafe right"
+              << "\n\t5 - Rotate left\n\t6 - Rotate right\n\t7 - stop\n\t8 - Toggle camera\n\t9 - Display car\n\t0 - exit\n";
 }
 
 
 // TODO: fix input verification  
-double getChangeValue(){
+double getChangeValue() {
     double value;
-    std::cout << "Enter option: ";
+    std::cout << "Enter value: ";
+    std::cin >> value; // TEMP CODE FOR SIM TESTING!
     
     /*
     while (!(std::cin >> value) || value < 0){
@@ -85,12 +105,11 @@ double getChangeValue(){
     return value;
 }
 
-
-int getChoice(){
+int getChoice() {
     char value;
-    std::cout << "Enter value: ";
+    std::cout << "Enter option: ";
     std::cin >> value;
-    
     
     return value - '0';
 }
+

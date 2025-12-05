@@ -27,7 +27,6 @@ class Motor {
 private:
     std::string name;
     int speedPercent;   // from -100 to +100
-    bool enabled;
     int forwardPin;
     int backwardPin;
 public:

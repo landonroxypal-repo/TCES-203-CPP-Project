@@ -24,7 +24,6 @@ Motor::Motor()
 {
     name = "unnamed";
     speedPercent = 0;
-    enabled = false;
     forwardPin = 0;
     backwardPin = 0;
 }
@@ -33,7 +32,6 @@ Motor::Motor(const std::string& motorName, int backPin, int forPin)
 {
     name = motorName;
     speedPercent = 0;
-    enabled = false;
 
     forwardPin = backPin;
     backwardPin = forPin;
@@ -48,7 +46,6 @@ Motor::Motor(const std::string& motorName)
 {
     name = motorName;
     speedPercent = 0;
-    enabled = false;
 }
 
 void Motor::setSpeed(int newSpeedPercent)
@@ -103,7 +100,7 @@ std::string Motor::toString() const // Can you tell I like java yet?
 
     ss << "Name = " << name << "\n";
     ss << "Speed = " << speedPercent << "% \n";
-    ss << "Enabled = " << (enabled ? "true" : "false") << "\n";
+    ss << "Enabled = " << (isEnabled() ? "true" : "false") << "\n";
 
     return ss.str();
 }

@@ -92,6 +92,7 @@ public:
     void applyCommand(MovementCommand cmd, double value = 0);
 
     std::string toString() const;
+    std::string getBasicInfo() const;
 
     std::vector<Motor> getMotors() const;
 };
