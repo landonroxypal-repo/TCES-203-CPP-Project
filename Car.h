@@ -1,3 +1,9 @@
+/* 
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Abstraction of the car class that sits at the topmost layer in the project.
+    Filename: Car.h
+*/
+
 #ifndef CAR
 #define CAR
 

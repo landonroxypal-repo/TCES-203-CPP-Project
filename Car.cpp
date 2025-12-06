@@ -1,3 +1,9 @@
+/* 
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Implementation of the car class.
+    Filename: Car.h
+*/
+
 #include "Car.h"
 #include <string>
 #include <math.h>

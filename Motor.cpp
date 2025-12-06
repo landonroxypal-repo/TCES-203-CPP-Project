@@ -1,7 +1,7 @@
 /* 
-    Author: Landon Wardle
-    Filename: Motor.h
-    Purpose: Header file for the motor class
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Implementation details of the motor class.
+    Filename: Motor.cpp
 */
 
 #include "Motor.h"

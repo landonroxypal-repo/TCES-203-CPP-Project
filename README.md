@@ -1,5 +1,7 @@
 The code in this folder operates a car in c++ for a raspberry pi.
 
+Authors: Landon Wardle and Robert Cromer
+
 # Compilation
 
 To compile and run our project, please run this command in the terminal with the current directory set 
@@ -7,18 +9,18 @@ to where the main.cpp file is located.
 
 
 If on a Raspberry Pi B:
-g++ -DUSING_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp Simulator.cpp -lwiringpi -o TCES203Proj2
-./TCES203Proj2
+    g++ -DUSING_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp Simulator.cpp -lwiringpi -o TCES203Proj2
+    ./TCES203Proj2
 
-Note: The above compilation command WILL fail if you do not have a Raspberry Pi B with the wiringPi.h header file installed!
+    Note: The above compilation command WILL fail if you do not have a Raspberry Pi B with the wiringPi.h header file installed!
 
 If simulating a mock Raspberry Pi B in an IDE:
-g++ -DMOCK=1 -std=c++11 main.cpp Car.cpp motor.cpp wiringPi.cpp Simulator.cpp -o TCES203Proj2
-./TCES203Proj2
+    g++ -DMOCK=1 -std=c++11 main.cpp Car.cpp motor.cpp wiringPi.cpp Simulator.cpp -o TCES203Proj2
+    ./TCES203Proj2
 
 Otherwise (simulation mode):
-g++ -std=c++11 main.cpp Car.cpp Motor.cpp Simulator.cpp -o TCES203Proj2
-./TCES203Proj2
+    g++ -std=c++11 main.cpp Car.cpp Motor.cpp Simulator.cpp -o TCES203Proj2
+    ./TCES203Proj2
 
 (Note that the compilation command is TWO lines, if it is pasted in as one line the compiler will return 1 and fail to run the code.)
 
@@ -32,12 +34,14 @@ Files:
  - Motor.h: A single motor connected from a L289N motor driver module to the Raspberry PI. Most basic unit of the car; can be 
    set to rotate at a specific speed or shut down quickly.
  - Motor.cpp: The implementation of the Motor class defined in Motor.h.
- - Simulator.h: A simulator class that does something [NOT IMPLEMENTED YET!!!!!!!!]
- - Simulator.cpp: [NOT IMPLEMENTED YET!!!!!!!]
+ - Simulator.h: A small simulation class that takes in a Mecanum car and a grid size to simulate where the car is in physical space.
+ - Simulator.cpp: The implementation of the simulation class defined in Simulator.h.
 
 # Simulator
 
-NOT IMPLEMENTED YET!!
+The simulator is automatically toggled on or off for the program given the compilation.
+
+The simulator displays the car within a grid and uses basic trignometry to simulate the car's movement within an ideal lab with no obstacles. The simulator has the same interface as driving the real car so that testing can be quickly done in the simulation then carried out to a real-world car without hurdle.
 
 # Test Scenarios
 
@@ -57,33 +61,41 @@ Scenarios:
         The car should move forward, then back. It should then rotate 45 degrees and move forward diagonally and backward diagonally.
 
     Observation (simulator output):
-        The car moved forward and then backwards. Then properly rotated and moved forward and backwards in a diagonal pattern!
+        The car moved forward and then backwards 5 units each, resetting to its initial position. Then it rotated 45 degrees and then diagonally moved forward and backward 5 units.
 
  - Scenario 2:
 
      Commands Run:
-        Command 1
-        Command 2
-        Command 3
+        1 - Move forward 5 units
+        3 - Strafe left 5 units
+        2 - Move backward 5 units
+        4 - Strafe right 5 units
+        7 - Stop
 
     Expectation:
-        Car won't explode!
+        The car should finish traversing its path right where it started with a small square loop, then force stop all motors.
 
     Observation (simulator output):
-        Car in fact did not explode :D
+        The car behaved as expected. It traversed a path where it moved forward 5 units, moved left 5 units, backward 5 units, and right 5 units to ultimately end up in the location it started. The car also force stopped all motors as expected.
 
  - Scenario 3:
 
      Commands Run:
-        Command 1
-        Command 2
-        Command 3
+        1 - Move forward 5 units
+        6 - Rotate right 90 degrees
+        1 - Move forward 5 units
+        6 - Rotate right 90 degrees
+        1 - Move forward 5 units
+        6 - Rotate right 90 degrees
+        1 - Move forward 5 units
+        6 - Rotate right 90 degrees
+        7 - Stop
 
     Expectation:
-        Car won't explode!
+        Car should do the exact same as scenario 2, but now it is rotating itself rather than strafing.
 
     Observation (simulator output):
-        Car in fact did not explode :D
+        The car's behavior matches the same end result as scenario 2, which is what was expected. The motors also all stop at the end of the operation as expected too.
 
 # Reflection Paragraph
     - What was the most challenging part?

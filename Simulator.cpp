@@ -1,3 +1,9 @@
+/* 
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Implementation of the simulator class.
+    Filename: Simulator.cpp
+*/
+
 #include <iostream>
 #include <iomanip>
 #include <thread>

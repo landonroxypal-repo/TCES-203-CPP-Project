@@ -1,3 +1,5 @@
+// This file is NOT written by me and Robert. We got this file from Bob's Raspberry Pi itself!
+
 /*
  * wiringPi.h:
  *	Arduino like Wiring library for the Raspberry Pi.

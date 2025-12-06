@@ -1,3 +1,9 @@
+/* 
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Header file abstracting details of the simulator class.
+    Filename: Simulator.h
+*/
+
 #ifndef SIMULATOR
 #define SIMULATOR
 

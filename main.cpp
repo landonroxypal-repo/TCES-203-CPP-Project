@@ -1,3 +1,9 @@
+/* 
+    Authors: Landon Wardle and Robert Cromer
+    Purpose: Entry point of the project.
+    Filename: main.cpp
+*/
+
 #include <iostream>
 #include <limits>
 
@@ -27,13 +33,13 @@ int main() {
         sim = new Simulator(car, 31, 31);
     #endif
 
-    int choice = -1, value;
+    int choice = -1, value = 0;
     do {
         printMenu();
         choice = getChoice();
         
-        if (choice >= 1 && choice <= 6){
-            value = getChangeValue();
+        if (sim != nullptr && choice >= 1 && choice <= 6) {
+            value = getChangeValue(); // This code will not trigger in the case of working w/ the real car!
         }
 
         switch(choice){
