@@ -42,18 +42,22 @@ NOT IMPLEMENTED YET!!
 # Test Scenarios
 
 Scenarios:
+    Note that all scenarios were tested in the simulation mode.
+
  - Scenario 1:
 
     Commands Run:
-        Command 1
-        Command 2
-        Command 3
+        1 - Move forward 5 units
+        2 - Move backward 5 units
+        3 - Rotate Right 45 degrees
+        1 - Move forward 5 units
+        2 - Move backward 5 units
 
     Expectation:
-        Car won't explode!
+        The car should move forward, then back. It should then rotate 45 degrees and move forward diagonally and backward diagonally.
 
     Observation (simulator output):
-        Car in fact did not explode :D
+        The car moved forward and then backwards. Then properly rotated and moved forward and backwards in a diagonal pattern!
 
  - Scenario 2:
 
