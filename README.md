@@ -99,6 +99,6 @@ Scenarios:
 
 # Reflection Paragraph
     - What was the most challenging part?
-        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do.
+        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. We kept getting infinite loops when incorrect inupt was typed into the command line. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do. We also had trouble trying to figure out how to make the code interface with the raspberry pi--especially since external incluencees kept making it so that the raspberry pi was not able to run the code because it was improperly wired. 
     - What did you learn about C++ and software design from this project?
-        -One of the main things that we learned in this code is how to set up the code to compile differently based on what was needed. This was seen when we use the #ifdef derictive throughout the code and defined different macros in the command line. 
+        - One of the main things that we learned in this code is how to set up the code to compile differently based on what was needed. This was seen when we use the #ifdef directive throughout the code and how different compilation commands define different macros in the command line. We also learned how to use physical documentation to make sure that our hardware does not fry itself, and how to use C++ to interface with the Raspberry Pi. 
