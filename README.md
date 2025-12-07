@@ -22,7 +22,7 @@ Otherwise (simulation mode):
     g++ -std=c++11 main.cpp Car.cpp Motor.cpp Simulator.cpp -o TCES203Proj2
     ./TCES203Proj2
 
-(Note that the compilation command is TWO lines, if it is pasted in as one line the compiler will return 1 and fail to run the code.)
+(Note that the compilation section of the commands above is only on the first line. The second line just runs the file outputted from the first compilation command)
 
 # Classes and Files
 
@@ -99,4 +99,6 @@ Scenarios:
 
 # Reflection Paragraph
     - What was the most challenging part?
+        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do.
     - What did you learn about C++ and software design from this project?
+        -One of the main things that we learned in this code is how to set up the code to compile differently based on what was needed. This was seen when we use the #ifdef derictive throughout the code and defined different macros in the command line. 
