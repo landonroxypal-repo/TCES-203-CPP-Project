@@ -2,6 +2,12 @@ The code in this folder operates a car in c++ for a raspberry pi.
 
 Authors: Landon Wardle and Robert Cromer
 
+# Physical Car Videos
+
+Brief test: https://youtu.be/XIbji8G7Wj8
+
+Lab Lap: https://youtu.be/ZOZdYSiABNk
+
 # Compilation
 
 To compile and run our project, please run this command in the terminal with the current directory set 
