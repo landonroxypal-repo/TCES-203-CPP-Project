@@ -148,13 +148,12 @@ double getChangeValue() {
     std::cout << "Enter value: ";
     std::cin >> value; // TEMP CODE FOR SIM TESTING!
     
-    /*
-    while (!(std::cin >> value) || value < 0){
-        std::cout << "Invalid value. Enter a int from 0 to 7: ";
+    while (std::cin.fail()){
+        std::cout << "Invalid value. Enter a value greater than 9: ";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the buffer
+        std::cin >> value;
     }
-        */
     
     return value;
 }

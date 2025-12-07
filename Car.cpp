@@ -242,7 +242,7 @@ std::string MecanumCar::getBasicInfo() const
 {
     std::stringstream ss;
     ss << "Car:\n" << getDivider();
-    ss << "Position = (" << std::setprecision(2) << x << "," << y << ")\n";
+    ss << "Position = (" << std::fixed << std::setprecision(2) << x << "," << y << ")\n";
     ss << "Heading = " << std::setprecision(5) << headingDeg << static_cast<char>(248) << "\n";
     ss << "Camera State = " << (camera.isStreaming() ? "On" : "Off") << "\n";
 

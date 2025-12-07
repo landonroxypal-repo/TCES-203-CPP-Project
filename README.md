@@ -37,6 +37,11 @@ Files:
  - Simulator.h: A small simulation class that takes in a Mecanum car and a grid size to simulate where the car is in physical space.
  - Simulator.cpp: The implementation of the simulation class defined in Simulator.h.
 
+ Classes: 
+ -Motor: Contains information about the motor
+ -Car: Contains the data about the car, a tostring, and functions related to what the car in real life
+ -Simulator: Contains the fucntions that print out the grid when the simulator is compiled.
+
 # Simulator
 
 The simulator is automatically toggled on or off for the program given the compilation.
@@ -99,4 +104,4 @@ Scenarios:
 
 # Reflection Paragraph
     - What was the most challenging part?
-        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. We kept getting infinite loops when incorrect inupt was typed into the command line. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do. We also had trouble trying to figure out how to make the code interface with the raspberry pi--especially since external incluencees kept making it so that the raspberry pi was not able to run the code because it was improperly wired. Still, these issues did cause us to learn more about how to deal with these issues. For example, we used the cin.fail() method to fix the infinite loop method instead of putting a cin expression inside of the conditional for the while loop. We also learned how to use the documentation for the Raspberry Pi and its motors to ensure that the hardware is not fried by too much wattage. Looking through this documentation also helped us to code the raapberry Pi's pin outputs to run the motors. We also learned how to predefine macros and write code that uses these macros to determine when different lines of code need to be ran. For example, the commands for the pi will cause th tecompiler to throw errors on any device but a raspberry pi, ao we created a defined a macro so that we can control the situations in which the commands are compiled. 
+        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. We kept getting infinite loops when incorrect inupt was typed into the command line. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do. We also had trouble trying to figure out how to make the code interface with the raspberry pi--especially since external influencees kept making it so that the raspberry pi was not able to run the code because it was improperly wired. Still, these issues did cause us to learn more about how to deal with these issues. For example, we used the cin.fail() method to fix the infinite loop method instead of putting a cin expression inside of the conditional for the while loop. We also learned how to use the documentation for the Raspberry Pi and its motors to ensure that the hardware is not fried by too much wattage. Looking through this documentation also helped us to code the raapberry Pi's pin outputs to run the motors. We also learned how to predefine macros and write code that uses these macros to determine when different lines of code need to be ran. For example, the commands for the pi will cause th tecompiler to throw errors on any device but a raspberry pi, ao we created a defined a macro so that we can control the situations in which the commands are compiled. 
