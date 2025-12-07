@@ -12,8 +12,6 @@
 
 const int EXIT_CHOICE = 0;
 
-//TODO: NEED LOTS OF INPUT VERIFICATION!!
-
 void printMenu();
 double getChangeValue();
 int getChoice();
@@ -142,7 +140,6 @@ void printMenu(){
               << "\n\t5 - Rotate left\n\t6 - Rotate right\n\t7 - Stop\n\t8 - Toggle camera\n\t9 - Sort Commands\n\t0 - Exit\n";
 }
 
-// TODO: fix input verification  
 double getChangeValue() {
     double value;
     std::cout << "Enter value: ";
