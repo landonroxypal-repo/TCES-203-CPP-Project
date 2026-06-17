@@ -3,7 +3,7 @@
 # C++ Mecanum Car Driver
 
 ### Authors: Landon Wardle and Robert Cromer
-### Fall, 2025
+### December, 2025
 
 A C++ Driver for a Mecaum Car using a Rapberry Pi B and LN298 motor drivers.
 
