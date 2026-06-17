@@ -1,52 +1,69 @@
-The code in this folder operates a car in c++ for a raspberry pi.
+<div align="center">
 
-Authors: Landon Wardle and Robert Cromer
+# C++ Mecanum Car Driver
 
-# Physical Car Videos
+### Authors: Landon Wardle and Robert Cromer
+### Fall, 2025
 
-Brief test: https://youtu.be/XIbji8G7Wj8
+A C++ Driver for a Mecaum Car using a Rapberry Pi B and LN298 motor drivers.
 
-Lab Lap: https://youtu.be/ZOZdYSiABNk
+<!-- Badge row — these render as little pills on GitHub -->
+![Focus](https://img.shields.io/badge/focus-embedded%20systems-2b6cb0?style=for-the-badge)
+
+</div>
+
+---
+
+## Table of Contents
+
+1. [Compilation](#compilation)
+2. [Classes and Files](#classes-and-files)
+3. [Simulator](#simulator)
+4. [Test Scenarios](#test-scenarios)
+5. [Car Test Videos](#car-test-videos)
+
+---
 
 # Compilation
 
-To compile and run our project, please run this command in the terminal with the current directory set 
-to where the main.cpp file is located.
-
+To compile and run the project, run this command in the terminal with the current directory set 
+to where the main.cpp file is located. Also install the GNU C++ Compiler Collection.
 
 If on a Raspberry Pi B:
-    g++ -DUSING_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp Simulator.cpp -lwiringpi -o TCES203Proj2
-    ./TCES203Proj2
+    ```g++ -DUSING_PI=1 -std=c++11 main.cpp Car.cpp motor.cpp Simulator.cpp -lwiringpi -o TCES203Proj2
+    ./TCES203Proj2```
 
-    Note: The above compilation command WILL fail if you do not have a Raspberry Pi B with the wiringPi.h header file installed!
+> [!NOTE]
+> Compilation **WILL** fail if run on a Raspberry Pi B without a WiringPi.h header file present!
 
 If simulating a mock Raspberry Pi B in an IDE:
-    g++ -DMOCK=1 -std=c++11 main.cpp Car.cpp motor.cpp wiringPi.cpp Simulator.cpp -o TCES203Proj2
-    ./TCES203Proj2
+    ```g++ -DMOCK=1 -std=c++11 main.cpp Car.cpp motor.cpp wiringPi.cpp Simulator.cpp -o TCES203Proj2
+    ./TCES203Proj2```
 
 Otherwise (simulation mode):
-    g++ -std=c++11 main.cpp Car.cpp Motor.cpp Simulator.cpp -o TCES203Proj2
-    ./TCES203Proj2
+    ```g++ -std=c++11 main.cpp Car.cpp Motor.cpp Simulator.cpp -o TCES203Proj2
+    ./TCES203Proj2```
 
-(Note that the compilation section of the commands above is only on the first line. The second line just runs the file outputted from the first compilation command)
+> [!NOTE]
+> The compilation commands above compile the driver file and run it in the terminal automatically.
 
 # Classes and Files
 
-Files:
- - main.cpp: The entry point of the program. Responsible for initializing the car class and simulator to provide the user with text-based input.
- - Car.h: A Mecanum Car class that sits at the topmost level of the program. It is responsible for integrating Motors and the Pi Camera
+### Files:
+ - **main.cpp**: The entry point of the program. Responsible for initializing the car class and simulator to provide the user with text-based input.
+ - **Car.h**: A Mecanum Car class that sits at the topmost level of the program. It is responsible for integrating Motors and the Pi Camera
    into a single unit that can be controlled easily from function calls. 
- - Car.cpp: The implementation of the Car class defined in the header file Car.h.
- - Motor.h: A single motor connected from a L289N motor driver module to the Raspberry PI. Most basic unit of the car; can be 
+ - **Car.cpp**: The implementation of the Car class defined in the header file Car.h.
+ - **Motor.h**: A single motor connected from a L289N motor driver module to the Raspberry PI. Most basic unit of the car; can be 
    set to rotate at a specific speed or shut down quickly.
- - Motor.cpp: The implementation of the Motor class defined in Motor.h.
- - Simulator.h: A small simulation class that takes in a Mecanum car and a grid size to simulate where the car is in physical space.
- - Simulator.cpp: The implementation of the simulation class defined in Simulator.h.
+ - **Motor.cpp**: The implementation of the Motor class defined in Motor.h.
+ - **Simulator.h**: A small simulation class that takes in a Mecanum car and a grid size to simulate where the car is in physical space.
+ - **Simulator.cpp**: The implementation of the simulation class defined in Simulator.h.
 
- Classes: 
- -Motor: Contains information about the motor
- -Car: Contains the data about the car, a tostring, and functions related to what the car in real life
- -Simulator: Contains the fucntions that print out the grid when the simulator is compiled.
+### Classes: 
+ - **Motor**: Contains information about the motor
+ - **Car**: Contains the data about the car, a tostring, and functions related to what the car in real life
+ - **Simulator**: Contains the functions that print out the grid when the simulator is compiled.
 
 # Simulator
 
@@ -56,58 +73,103 @@ The simulator displays the car within a grid and uses basic trignometry to simul
 
 # Test Scenarios
 
-Scenarios:
-    Note that all scenarios were tested in the simulation mode.
+## Scenarios:
+> [!NOTE]
+> All scenarios were tested in the simulation mode.
 
- - Scenario 1:
+<details>
+<summary><b>Scenario 1</b></summary>
 
-    Commands Run:
-        1 - Move forward 5 units
-        2 - Move backward 5 units
-        3 - Rotate Right 45 degrees
-        1 - Move forward 5 units
-        2 - Move backward 5 units
+<br>
 
-    Expectation:
-        The car should move forward, then back. It should then rotate 45 degrees and move forward diagonally and backward diagonally.
+**Commands Run:**
 
-    Observation (simulator output):
-        The car moved forward and then backwards 5 units each, resetting to its initial position. Then it rotated 45 degrees and then diagonally moved forward and backward 5 units.
+| Cmd # | Description |
+|:------|:------------|
+| 1 | Move forward 5 units |
+| 2 | Move backward 5 units |
+| 3 | Rotate right 45 degrees |
+| 1 | Move forward 5 units |
+| 2 | Move backward 5 units |
 
- - Scenario 2:
+**Expectation:**
+The car should move forward, then back. It should then rotate 45 degrees and move forward diagonally and backward diagonally.
 
-     Commands Run:
-        1 - Move forward 5 units
-        3 - Strafe left 5 units
-        2 - Move backward 5 units
-        4 - Strafe right 5 units
-        7 - Stop
+**Observation (simulator output):**
+The car moved forward and then backwards 5 units each, resetting to its initial position. Then it rotated 45 degrees and then diagonally moved forward and backward 5 units.
 
-    Expectation:
-        The car should finish traversing its path right where it started with a small square loop, then force stop all motors.
+</details>
 
-    Observation (simulator output):
-        The car behaved as expected. It traversed a path where it moved forward 5 units, moved left 5 units, backward 5 units, and right 5 units to ultimately end up in the location it started. The car also force stopped all motors as expected.
+<details>
+<summary><b>Scenario 2</b></summary>
 
- - Scenario 3:
+<br>
 
-     Commands Run:
-        1 - Move forward 5 units
-        6 - Rotate right 90 degrees
-        1 - Move forward 5 units
-        6 - Rotate right 90 degrees
-        1 - Move forward 5 units
-        6 - Rotate right 90 degrees
-        1 - Move forward 5 units
-        6 - Rotate right 90 degrees
-        7 - Stop
+**Commands Run:**
 
-    Expectation:
-        Car should do the exact same as scenario 2, but now it is rotating itself rather than strafing.
+| Cmd # | Description |
+|:------|:------------|
+| 1 | Move forward 5 units |
+| 3 | Strafe left 5 units |
+| 2 | Move backward 5 units |
+| 4 | Strafe right 5 units |
+| 7 | Stop |
 
-    Observation (simulator output):
-        The car's behavior matches the same end result as scenario 2, which is what was expected. The motors also all stop at the end of the operation as expected too.
+**Expectation:**
+The car should finish traversing its path right where it started with a small square loop, then force stop all motors.
 
-# Reflection Paragraph
-    - What was the most challenging part?
-        - The most challenging part was writing the code to clear the cin buffer when we enter invalid input. We kept getting infinite loops when incorrect inupt was typed into the command line. The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do. We also had trouble trying to figure out how to make the code interface with the raspberry pi--especially since external influences kept making it so that the raspberry pi was not able to run the code because it was improperly wired. Still, these issues did cause us to learn more about how to deal with similar problems. For example, we used the cin.fail() method to fix the infinite loop method instead of putting a cin expression inside of the conditional for the while loop. We also learned how to use the documentation for the Raspberry Pi and its motors to ensure that the hardware is not fried by too much wattage. Looking through this documentation also helped us to code the raspberry pi's pin outputs to run the motors. We also learned how to predefine macros and write code that uses these macros to determine when different lines of code need to be ran. For example, the commands for the pi will cause the compiler to throw errors on any device but a raspberry pi, so we created a defined a macro so that we can control the situations in which the commands are compiled. In terms of what we learned about software engineering, it would be the power of abstraction. The code designed for this project is capable of running in multiple scenarios (i.e. with a simulation, with a simulated pi, or with a physical car in a lab environment) because the implementation details for the motors in particular are hidden. The code is able to upscale very nicely to many different use cases without any modification to the internal structure under the hood. Rather, to switch between these three use cases all that has to happen is the motors recognize the case and choose to use wiring pi code or not. The car and the camera classes have no control over this occurring and do not know if it happened or not, which allows them to function independently of what the motors are doing so long as the motors are able to be driven by outside code.
+**Observation (simulator output):**
+The car behaved as expected. It traversed a path where it moved forward 5 units, moved left 5 units, backward 5 units, and right 5 units to ultimately end up in the location it started. The car also force stopped all motors as expected.
+
+</details>
+
+<details>
+<summary><b>Scenario 3</b></summary>
+
+<br>
+
+**Commands Run:**
+
+| Cmd # | Description |
+|:------|:------------|
+| 1 | Move forward 5 units |
+| 6 | Rotate right 90 degrees |
+| 1 | Move forward 5 units |
+| 6 | Rotate right 90 degrees |
+| 1 | Move forward 5 units |
+| 6 | Rotate right 90 degrees |
+| 1 | Move forward 5 units |
+| 6 | Rotate right 90 degrees |
+| 7 | Stop |
+
+**Expectation:**
+Car should do the exact same as scenario 2, but now it is rotating itself rather than strafing.
+
+**Observation (simulator output):**
+The car's behavior matches the same end result as scenario 2, which is what was expected. The motors also all stop at the end of the operation as expected too.
+
+</details>
+
+# Car Test Videos
+
+- **Brief test:** https://youtu.be/XIbji8G7Wj8
+
+- **Lab Lap:** https://youtu.be/ZOZdYSiABNk
+
+<!-- # Project Reflection
+The most challenging part was writing the code to clear the cin buffer when we enter invalid input. 
+We kept getting infinite loops when incorrect inupt was typed into the command line. 
+The other hard part was figuring out how to get different parts of the code to compile based on what we want the code to do. 
+We also had trouble trying to figure out how to make the code interface with the raspberry pi;
+especially since external influences kept making it so that the raspberry pi was not able to run the code because it was improperly wired. 
+Still, these issues did cause us to learn more about how to deal with similar problems.
+For example, we used the cin.fail() method to fix the infinite loop method instead of putting a cin expression inside of the conditional for the while loop. 
+We also learned how to use the documentation for the Raspberry Pi and its motors to ensure that the hardware is not fried by too much wattage.
+Looking through this documentation also helped us to code the raspberry pi's pin outputs to run the motors. 
+We also learned how to predefine macros and write code that uses these macros to determine when different lines of code need to be ran. 
+For example, the commands for the pi will cause the compiler to throw errors on any device but a raspberry pi, so we created a defined a macro so that we can control the situations in which the commands are compiled. 
+In terms of what we learned about software engineering, it would be the power of abstraction. 
+The code designed for this project is capable of running in multiple scenarios (i.e. with a simulation, with a simulated pi, or with a physical car in a lab environment) because the implementation details for the motors in particular are hidden. 
+The code is able to upscale very nicely to many different use cases without any modification to the internal structure under the hood. 
+Rather, to switch between these three use cases all that has to happen is the motors recognize the case and choose to use wiring pi code or not. 
+The car and the camera classes have no control over this occurring and do not know if it happened or not, which allows them to function independently of what the motors are doing so long as the motors are able to be driven by outside code. -->
